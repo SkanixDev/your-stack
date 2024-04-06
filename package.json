@@ -1,0 +1,22 @@
+{
+	"name": "your-stack",
+	"version": "1.0.0",
+	"description": "A CLI tool to generate a stack for your project",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"start": "tsc && node ./dist/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bin": {
+		"your-stack": "./bin/index.js"
+	},
+	"dependencies": {
+		"@types/inquirer": "^9.0.7",
+		"commander": "^12.0.0",
+		"inquirer": "^8.2.6"
+	}
+}
