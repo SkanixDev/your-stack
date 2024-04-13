@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 import { initializeForm } from "./core/init";
+import { prepareProject } from "./core/prepare";
 
 const program = new Command();
 
@@ -17,6 +18,7 @@ program
     .description("Prepare the project")
     .action(async () => {
         console.log("Preparing the project...");
+        prepareProject();
     });
 
 program.parse(process.argv);

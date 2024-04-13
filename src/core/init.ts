@@ -72,7 +72,7 @@ export function initializeForm(){
             when: (answers) => answers.typeproject === "web application",
         },
         {
-            type: "checkbox",
+            type: "list",
             name: "Design Framework",
             message: "Choose design framework:",
             choices: [
