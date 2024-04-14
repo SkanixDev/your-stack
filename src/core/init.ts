@@ -8,14 +8,15 @@ import fs from "node:fs";
 import type { ConfigFile } from "../types/types";
 
 export function initializeForm(){
-    const config = getConfigFile();
-    const projectExist = false // existingProject();
-    if (config || projectExist) {
-        logger.error("Project already initialized");
-        return;
-    }
     
-    console.info("• Welcome to your project initialization wizard. Let's get started! \n\n")
+    const configFile = getConfigFile();
+    const emptyFolderProject = !existingProject();
+
+    console.info("• Welcome to your project initialization wizard. Let's get started!")
+
+    if (configFile) {
+        logger.warning("This folder may be already a project.");
+    }
 
     const prompt = inquirer.createPromptModule();
 
@@ -46,6 +47,18 @@ export function initializeForm(){
             type: "input",
             name: "author",
             message: "Author:",
+        },
+        {
+            type: "confirm",
+            name: "currentFolder",
+            message: "Do you want to initialize the project in the current folder?",
+            default: false,
+            when: (answers) => {
+                if (!emptyFolderProject) {
+                    return false;
+                }
+                return true;
+            }
         },
         {
             type: "list",
