@@ -5,6 +5,7 @@ import chalk from "chalk";
 import figlet from "figlet";
 import yaml from "js-yaml";
 import fs from "node:fs";
+import { ConfigFile } from "../types/types";
 
 export function initializeForm(){
     const config = getConfigFile();
@@ -23,7 +24,7 @@ export function initializeForm(){
     prompt([
         {
             type: "input",
-            name: "project",
+            name: "projectName",
             message: "Project name:",
             validate: (input) => {
                 if (!input) {
@@ -73,7 +74,7 @@ export function initializeForm(){
         },
         {
             type: "list",
-            name: "Design Framework",
+            name: "designframework",
             message: "Choose design framework:",
             choices: [
                 "CSS",
@@ -97,18 +98,18 @@ export function initializeForm(){
         },
         {
             type: "confirm",
-            name: "install",
+            name: "installDependencies",
             message: "Install dependencies?",
             default: true,
         },
-    ]).then((answers) => {
+    ]).then((answers: ConfigFile) => {
         logger.info("Create the config file...");
         createConfigFile(answers);
     });
 }
 
 
-function createConfigFile(answers: any) {
+function createConfigFile(answers: ConfigFile) {
 		const yamlConfig = yaml.dump(answers);
         fs.writeFileSync("ys.config.yaml", yamlConfig);
 }

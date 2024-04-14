@@ -1,8 +1,0 @@
-project: test
-description: A new project
-author: Skanix
-typeproject: web application
-technologyForWebApp: React
-Design Framework: []
-packageManager: npm
-install: true
