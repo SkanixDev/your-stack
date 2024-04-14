@@ -2,10 +2,10 @@ import inquirer from "inquirer";
 import { existingProject, getConfigFile, validateProjectName } from "../utils/utils";
 import logger from "../logger";
 import chalk from "chalk";
-import figlet from "figlet";
 import yaml from "js-yaml";
 import fs from "node:fs";
-import { ConfigFile } from "../types/types";
+
+import type { ConfigFile } from "../types/types";
 
 export function initializeForm(){
     const config = getConfigFile();
@@ -14,9 +14,7 @@ export function initializeForm(){
         logger.error("Project already initialized");
         return;
     }
-
-    const initHeaderText = figlet.textSync("Welcome to YourStack")
-    console.info(initHeaderText);
+    
     console.info("• Welcome to your project initialization wizard. Let's get started! \n\n")
 
     const prompt = inquirer.createPromptModule();
