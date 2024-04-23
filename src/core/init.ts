@@ -121,6 +121,12 @@ export function initializeForm(){
 
 
 function createConfigFile(answers: ConfigFile) {
-		const yamlConfig = yaml.dump(answers);
+    const yamlConfig = yaml.dump(answers);
+    if (answers.currentFolder === false) {
+        fs.mkdirSync(answers.projectName);
+        fs.writeFileSync(`${answers.projectName}/ys.config.yaml`, yamlConfig);
+    }
+    else {
         fs.writeFileSync("ys.config.yaml", yamlConfig);
+    }
 }
